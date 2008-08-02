@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Résultats Flahoo!{% endblock %}
+
+{% block content %}
+
+	{% if photos %}
+	    <ul id="photos" class="clearfix">
+	    {% for photo in photos %}
+	        <li><a href="{{ photo.url }}"><img src="{{ photo.image }}" alt="" /></a></li>
+	    {% endfor %}
+	    </ul>
+	{% else %}
+	    <p>No photos are available.</p>
+	{% endif %}
+
+{% endblock %}

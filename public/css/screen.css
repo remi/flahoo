@@ -1,0 +1,69 @@
+/* ****************************************************
+
+	@file:		   screen.css
+	@description:  Feuille de styles globale d'Ã©cran
+	@author:       remi (exomel.com)
+	@updated:	   20080801
+
+***************************************************** */
+
+/*
+ * @section Basic
+ ******************************************************************************/
+
+body {
+	font-family: Tahoma, Arial, Verdana, sans-serif;
+	font-size: 62.5%;
+	line-height: 1.6;
+	color: #000;
+	background-color: #eee;
+	padding: 25px;
+}
+
+p,ul,ol,table,form { margin-bottom: 1em; }
+ul { margin-left: 20px; }
+a { text-decoration: none; cursor: pointer; color: #e91b2d; }
+/* a:visited { color: #e1606b; } */
+a:hover { color: #b40010; }
+a * { cursor: pointer; }
+hr { display: none; }
+small { font-size: 90%; }
+input, select, button, textarea, option { font-family: Arial, Verdana, sans-serif; font-size: 100%; }
+button, label, select, option { cursor: pointer; }
+.clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; } .clearfix {display: inline-block;}
+/* Hides from IE-mac \*/ * html .clearfix {height: 1%;} .clearfix {display: block;} /* End hide from IE-mac */
+
+
+#wrap {
+	font-size: 110%;
+	width: 100%;
+	background: #fff;
+}
+
+#wrap .inner {
+	padding: 25px;
+}
+
+form input {
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 160%;
+	font-weight: bold;
+	padding: 4px;
+}
+
+/*
+ * @section Photos
+ ******************************************************************************/
+
+#photos {
+	margin: 0;
+}
+
+#photos li {
+	float: left;
+	margin: 0 10px 10px 0;
+}
+
+#photos li img {
+	display: block;
+}

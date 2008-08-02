@@ -1,0 +1,15 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="fr">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+	<link rel="stylesheet" type="text/css" href="/public/css/reset.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="/public/css/screen.css" media="screen" />
+</head>
+<body>
+	<div id="wrap">
+		<div class="inner">
+		    {% block content %}{% endblock %}
+		</div>
+	</div>
+</body>
+</html>
