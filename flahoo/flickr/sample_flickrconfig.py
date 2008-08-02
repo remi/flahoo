@@ -1,3 +1,1 @@
-class flickrconfig():
-	def __init__(self):
-		self.api_key = ''
+FLICKR_API_KEY = ''

@@ -7,9 +7,8 @@ class Flickr(models.Model):
         return "/photos/%s/" % (self.id)
 
     def get_photos_by_tag(self, tag):
-        from flahoo.flickr import flickrconfig
-        fconfig = flickrconfig.flickrconfig() 
-        client = FlickrClient(fconfig.api_key)
+        import flickrconfig
+        client = FlickrClient(flickrconfig.FLICKR_API_KEY)
 
         photos = client.flickr_photos_search(tags=tag, per_page=20)
         return photos;
