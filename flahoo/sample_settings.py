@@ -7,6 +7,8 @@ ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
 
+FLICKR_API_KEY = ""
+
 MANAGERS = ADMINS
 
 DATABASE_ENGINE = ''           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
