@@ -9,8 +9,7 @@ class Flickr(models.Model):
     def get_photos_by_tag(self, tag):
         from flahoo.flickr import flickrconfig
         fconfig = flickrconfig.flickrconfig() 
-        API_KEY = fconfig.api_key
-        client = FlickrClient(API_KEY)
+        client = FlickrClient(fconfig.api_key)
 
         photos = client.flickr_photos_search(tags=tag, per_page=20)
         return photos;
