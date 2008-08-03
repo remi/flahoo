@@ -8,7 +8,7 @@ urlpatterns = patterns('',
     # Example:
     #(r'^flahoo/', include('flahoo.foo.urls')),
     #(r'^[a-z]+/?', 'flahoo.flickr.views.photos'),
-	(r'^/?$', 'flahoo.flickr.views.index'),
+	(r'^/?$', 'flahoo.photos.views.index'),
     (r'^public/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/path/to/public/'}),
 
     # Uncomment the next line to enable admin documentation:
