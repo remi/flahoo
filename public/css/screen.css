@@ -22,9 +22,7 @@ body {
 
 p,ul,ol,table,form { margin-bottom: 1em; }
 ul { margin-left: 20px; }
-a { text-decoration: none; cursor: pointer; color: #e91b2d; }
-/* a:visited { color: #e1606b; } */
-a:hover { color: #b40010; }
+a { text-decoration: none; cursor: pointer; color: #1D56EF; }
 a * { cursor: pointer; }
 hr { display: none; }
 small { font-size: 90%; }
@@ -66,4 +64,12 @@ form input {
 
 #photos li img {
 	display: block;
+}
+
+.contexte {
+	background: #eee;
+	border: 1px solid #ddd;
+	color: #333;
+	padding: 1em;
+	margin-bottom: 1em;
 }

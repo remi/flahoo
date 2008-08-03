@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.db import models
 from flahoo.lib.FlickrClient import FlickrClient
     
@@ -7,11 +9,10 @@ class Flickr(models.Model):
         return "/photos/%s/" % (self.id)
 
     def get_photos_by_tag(self, tag):
-        import flickrconfig
         import flahoo.settings
         client = FlickrClient(flahoo.settings.FLICKR_API_KEY)
 
-        photos = client.flickr_photos_search(tags=tag, per_page=20)
+        photos = client.flickr_photos_search(tags=tag, per_page=3)
         return photos;
     
     def get_photo_image(self, photo, size='small_square'):

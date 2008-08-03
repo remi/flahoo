@@ -4,12 +4,20 @@
 
 {% block content %}
 
-	{% if photos %}
-	    <ul id="photos" class="clearfix">
-	    {% for photo in photos %}
-	        <li><a href="{{ photo.url }}"><img src="{{ photo.image }}" alt="" /></a></li>
+	<div class="contexte">
+		<blockquote>{{mots|lower}}</blockquote>
+		<cite><a href="{{source}}">{{source}}</a></cite>
+	</div>
+
+	{% if tags %}
+	    {% for tag in tags %}
+		<h2>{{tag.tag}}</h2>
+		    <ul id="photos" class="clearfix">
+		    {% for photo in tag.photos %}
+		        <li><a href="{{ photo.url }}"><img src="{{ photo.image }}" alt="" /></a></li>
+		    {% endfor %}
+		    </ul>
 	    {% endfor %}
-	    </ul>
 	{% else %}
 	    <p>No photos are available.</p>
 	{% endif %}
