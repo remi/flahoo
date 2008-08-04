@@ -7,23 +7,16 @@ import re
 import random
 
 def index(request):
-    if (request.GET.has_key('s')) :
-        return photos(request)
-    else :
-        t = loader.get_template('accueil.html')
-        c = Context({})
-        return HttpResponse(t.render(c))    
+	t = loader.get_template('accueil.html')
+	c = Context({})
+	return HttpResponse(t.render(c))    
 
 def photos(request, search_tag):
 
 	# Interaction avec Yahoo!
 	y = Yahoo()
 	resultats = y.search(search_tag, 30)
-	
-	# Sélection d'un résultat au hasard
-
-	r = random.randrange(0, len(resultats)-1)
-	resultat = resultats[r]
+	resultat = random.choice(resultats)
 
 	# Les mots
 	mots = resultat.Summary
