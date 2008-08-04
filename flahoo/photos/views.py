@@ -12,11 +12,11 @@ def index(request):
         c = Context({})
         return HttpResponse(t.render(c))    
 
-def photos(request):
+def photos(request, tag):
 
 	# Interaction avec Yahoo!
 	y = Yahoo()
-	resultats = y.search(request.GET['s'], 30)
+	resultats = y.search(tag, 30)
 	
 	# Sélection d'un résultat au hasard
 	import random
@@ -26,7 +26,7 @@ def photos(request):
 	# Les mots
 	mots = resultat.Summary
 	mots_originaux = mots
-	def enleverpoints(x): return x != u'...'
+	def enleverpoints(x): return x != u'...' # on enlève les occurences de "..." dans les mots
 	mots = filter(enleverpoints, mots.split(' '))
 	if (len(mots) < 6) :
 		raise Exception('Pas assez de mots!')

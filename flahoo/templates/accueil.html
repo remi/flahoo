@@ -4,8 +4,8 @@
 
 {% block content %}
 
-<form action="/" method="get">
-	<input type="text" name="s" />
+<form action="/" method="get" onsubmit="window.location = '/photos/'+document.getElementById('s').value;">
+	<input type="text" name="s" id="s"" />
 </form>
 
 {% endblock %}
