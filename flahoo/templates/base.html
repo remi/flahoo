@@ -9,6 +9,11 @@
 <body>
 	<div id="wrap">
 		<div class="inner">
+
+			<form action="/" method="get" onsubmit="window.location = '/photos/'+document.getElementById('s').value; return false;">
+				<input type="text" name="s" id="s" value="{{ input_value }}" />
+			</form>			
+			
 		    {% block content %}{% endblock %}
 		</div>
 	</div>

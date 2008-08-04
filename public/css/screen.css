@@ -67,6 +67,7 @@ form input {
 }
 
 .contexte {
+	margin-top: 2em;
 	background: #eee;
 	border: 1px solid #ddd;
 	color: #333;

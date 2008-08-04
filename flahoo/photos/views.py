@@ -12,11 +12,11 @@ def index(request):
         c = Context({})
         return HttpResponse(t.render(c))    
 
-def photos(request, tag):
+def photos(request, search_tag):
 
 	# Interaction avec Yahoo!
 	y = Yahoo()
-	resultats = y.search(tag, 30)
+	resultats = y.search(search_tag, 30)
 	
 	# Sélection d'un résultat au hasard
 	import random
@@ -68,7 +68,8 @@ def photos(request, tag):
 	c = Context({
     	'tags': output,
     	'mots' : mots_originaux,
-    	'source' : resultat.Url
+    	'source' : resultat.Url,
+    	'input_value' : search_tag
 	})
 	
 	return HttpResponse(t.render(c))
