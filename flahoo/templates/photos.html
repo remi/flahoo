@@ -13,12 +13,18 @@
 
 	{% if tags %}
 	    {% for tag in tags %}
-		<h2>{{tag.tag}}</h2>
-		    <ul id="photos" class="clearfix">
+		<div class="tag">
+		<h2><span>{{ forloop.counter }}.</span> {{tag.tagr}} <span>(classées par {{tag.sort}})</span></h2>
+			{% if tag.photos %}
+		    <ul class="clearfix">
 		    {% for photo in tag.photos %}
 		        <li><a href="{{ photo.url }}"><img src="{{ photo.image }}" alt="" /></a></li>
 		    {% endfor %}
 		    </ul>
+			{% else %}
+			<p>Aucune photo n'a été trouvée pour ce tag.</p>
+			{% endif %}
+		</div>
 	    {% endfor %}
 	{% else %}
 	    <p>No photos are available.</p>

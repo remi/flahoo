@@ -3,6 +3,8 @@
 from django.template import Context, loader
 from django.http import HttpResponse
 from flahoo.photos.models import *
+import re
+import random
 
 def index(request):
     if (request.GET.has_key('s')) :
@@ -19,7 +21,7 @@ def photos(request, search_tag):
 	resultats = y.search(search_tag, 30)
 	
 	# Sélection d'un résultat au hasard
-	import random
+
 	r = random.randrange(0, len(resultats)-1)
 	resultat = resultats[r]
 
@@ -35,15 +37,17 @@ def photos(request, search_tag):
 	tags = []
 	for i in range(3):
 		tag = mots[random.randrange(0, len(mots))]
-		tags.append(tag)
 		mots.remove(tag)
+		tag = re.sub(';|,|\.|\s', '', tag)
+		tags.append(tag)
 
 	# Interaction avec Flickr
 	f = Flickr()
 	output = []
 	for tag in tags:
-		photos = f.get_photos_by_tag(tag.encode('utf-8'), 10)
+		(photos, sort_method) = f.get_photos_by_tag(tag.encode('utf-8'), 10)
 		newphotos = []
+	
 		for photo in photos:
 			p = {
 	 		'title' : photo('title'),
@@ -51,10 +55,12 @@ def photos(request, search_tag):
 	 		'url' : f.get_photo_url(photo)
 	 		}
 			newphotos.append(p)
-		output.append({'photos':newphotos, 'tag': tag})
+		tagr = re.sub('^(.+)(.{1})$', '\\1<strong>\\2</strong>', tag)
+		output.append({'photos':newphotos, 'tag': tag, 'sort': sort_method, 'tagr' : tagr })
 
 	# Highlight des tags dans les mots
 	def highlight_tags(mot): 
+		mot = mot.lower()
 		if (tags.count(mot)) :
 			return '<strong>%s</strong>' % mot
 		else :

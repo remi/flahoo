@@ -2,14 +2,25 @@
 
 from django.db import models
 from flahoo.lib.FlickrClient import FlickrClient
+import random
     
 class Flickr(models.Model):
+	sort_methods = ('date-posted-asc',
+					'date-posted-desc',
+					'date-taken-asc',
+					'date-taken-desc',
+					'interestingness-desc',
+					'interestingness-asc',
+					'relevance')
+
 	def get_photos_by_tag(self, tag, total=10):
 		import flahoo.settings
 		client = FlickrClient(flahoo.settings.FLICKR_API_KEY)
 
-		photos = client.flickr_photos_search(tags=tag, per_page=total)
-		return photos;
+		sort_method = random.choice(self.sort_methods)
+
+		photos = client.flickr_photos_search(tags=tag, per_page=total, sort=sort_method)
+		return (photos, sort_method);
 	
 	def get_photo_image(self, photo, size='small_square'):
 		
@@ -44,3 +55,4 @@ class Yahoo(models.Model):
 		y.query = query
 		y.results = total
 		return y.parse_results().results
+	

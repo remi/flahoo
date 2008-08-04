@@ -5,17 +5,31 @@
     <title>{% block title %}{% endblock %}</title>
 	<link rel="stylesheet" type="text/css" href="/public/css/reset.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="/public/css/screen.css" media="screen" />
+	
+	<link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon" />
+	
 </head>
 <body>
+	<div id="entete">
+		<h1><a href="/">Flahoo<span>!</span></a></h1>
+		<p>Un heureux mélange entre <a class="yahoo" href="http://yahoo.com/">Yahoo!</a> et <a class="flickr" href="http://www.flickr.com/">Flick<span>r</span></a>.</p>
+	</div>
 	<div id="wrap">
 		<div class="inner">
-
 			<form action="/" method="get" onsubmit="window.location = '/photos/'+document.getElementById('s').value; return false;">
 				<input type="text" name="s" id="s" value="{{ input_value }}" />
+				<p>↑ Entrez un mot dans la boîte ci-dessus et appuyez sur Entrée.</p>
 			</form>			
 			
 		    {% block content %}{% endblock %}
 		</div>
+	</div>
+	<div id="footer">
+		<p>
+			&copy; 2006-2008 Rémi Prévost<br />
+			Un projet réalisé dans le cadre du cours Langage Multimédia III | Automne 2006<br />
+			Ré-écrit à l'aide du framework <a href="http://www.djangoproject.com/">Django</a> | Été 2008
+		</p>
 	</div>
 </body>
 </html>
