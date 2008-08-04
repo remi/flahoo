@@ -38,7 +38,7 @@ def photos(request, search_tag):
 	for i in range(3):
 		tag = mots[random.randrange(0, len(mots))]
 		mots.remove(tag)
-		tag = re.sub(';|,|\.|\s', '', tag)
+		tag = re.sub(';|,|\.|\s|\(|\)', '', tag)
 		tags.append(tag)
 
 	# Interaction avec Flickr
