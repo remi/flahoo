@@ -50,7 +50,8 @@ def photos(request, search_tag):
 	 		}
 			newphotos.append(p)
 		tagr = re.sub('^(.+)(.{1})$', '\\1<strong>\\2</strong>', tag)
-		output.append({'photos':newphotos, 'tag': tag, 'sort': sort_method, 'tagr' : tagr })
+		url = "/photos/%s" % tag.lower()
+		output.append({'photos':newphotos, 'tag': tag, 'sort': sort_method, 'tagr' : tagr, 'url' : url})
 
 	# Highlight des tags dans les mots
 	def highlight_tags(mot): 

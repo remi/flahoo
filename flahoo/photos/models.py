@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from django.db import models
 from flahoo.lib.FlickrClient import FlickrClient
 import random
     
-class Flickr(models.Model):
+class Flickr():
 	sort_methods = ('date-posted-asc',
 					'date-posted-desc',
 					'date-taken-asc',
@@ -46,7 +45,7 @@ class Flickr(models.Model):
 		base_url = "http://flickr.com"
 		return "%s/photos/%s/%s/" % (base_url, photo('owner'), photo('id'))
 
-class Yahoo(models.Model):
+class Yahoo():
 	
 	from yahoo.search.web import *
 	

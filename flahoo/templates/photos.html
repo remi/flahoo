@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Résultats Flahoo!{% endblock %}
+{% block title %}Flahoo! — Résultats pour "{{ input_value }}"{% endblock %}
 
 {% block content %}
 
@@ -14,7 +14,7 @@
 	{% if tags %}
 	    {% for tag in tags %}
 		<div class="tag">
-		<h2><span>{{ forloop.counter }}.</span> {{tag.tagr|lower}} <span>(classées par {{tag.sort}})</span></h2>
+		<h2><span>{{ forloop.counter }}.</span> <a href="{{tag.url}}">{{tag.tagr|lower}}</a> <span>(classées par {{tag.sort}})</span></h2>
 			{% if tag.photos %}
 		    <ul class="clearfix">
 		    {% for photo in tag.photos %}
