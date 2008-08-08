@@ -7,7 +7,8 @@ ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
 
-FLICKR_API_KEY = ""
+FLAHOO_FLICKR_API_KEY = "Insert your Flickr API key here"
+FLAHOO_TOTAL_TAGS = 3
 
 MANAGERS = ADMINS
 

@@ -14,7 +14,7 @@
 	{% if tags %}
 	    {% for tag in tags %}
 		<div class="tag">
-		<h2><span>{{ forloop.counter }}.</span> {{tag.tagr}} <span>(classées par {{tag.sort}})</span></h2>
+		<h2><span>{{ forloop.counter }}.</span> {{tag.tagr|lower}} <span>(classées par {{tag.sort}})</span></h2>
 			{% if tag.photos %}
 		    <ul class="clearfix">
 		    {% for photo in tag.photos %}

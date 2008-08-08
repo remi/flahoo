@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from flahoo.photos.models import *
 import re
 import random
+import flahoo.settings
 
 def index(request):
 	t = loader.get_template('accueil.html')
@@ -28,10 +29,10 @@ def photos(request, search_tag):
 
 	# Les tags
 	tags = []
-	for i in range(3):
+	for i in range(flahoo.settings.FLAHOO_TOTAL_TAGS):
 		tag = mots[random.randrange(0, len(mots))]
 		mots.remove(tag)
-		tag = re.sub(';|,|\.|\s|\(|\)', '', tag)
+		tag = re.sub(':|;|,|\.|\s|\(|\)', '', tag)
 		tags.append(tag)
 
 	# Interaction avec Flickr

@@ -15,7 +15,7 @@ class Flickr(models.Model):
 
 	def get_photos_by_tag(self, tag, total=10):
 		import flahoo.settings
-		client = FlickrClient(flahoo.settings.FLICKR_API_KEY)
+		client = FlickrClient(flahoo.settings.FLAHOO_FLICKR_API_KEY)
 
 		sort_method = random.choice(self.sort_methods)
 

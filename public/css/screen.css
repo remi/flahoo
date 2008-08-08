@@ -170,6 +170,7 @@ form p {
 }
 
 .contexte cite {
+	padding-top: 0.4em;
 	display: block;
 	text-align: right;
 }
