@@ -44,9 +44,10 @@ class PhotosTestCase(unittest.TestCase):
 		mots = (
 			 	(u'Mot ; mot2'),
 			 	(u'Mot -'),
+			 	# À vérifier
+			 	#(u'Website For Marjorie Searcy ... Marjorie is an engaging singer/songwriter sharing her message of hope. ... \xa92006 - 2008 Marjorie Searcy - All Rights Reserved. ...'),
 			 	)
 		
 		f = Flickr()
 		for mot in mots:
-			
 			self.assertRaises(BadTagsError, f.get_tags_from_mots, mot.split(" "))

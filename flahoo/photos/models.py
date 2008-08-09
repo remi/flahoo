@@ -106,6 +106,7 @@ class Yahoo():
 	def filtrer_mots(self, mots):
 		def enleverpoints(x): return x != u'...' # on enlève les occurences de "..." dans les mots
 		def tolower(x): return x.lower()
+		mots = mots.encode('utf-8')
 		mots = mots.split(" ")
 		mots = filter(enleverpoints, mots)
 		mots = map(tolower, mots)
