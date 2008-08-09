@@ -22,36 +22,16 @@ def photos(request, search_tag):
 	# Les mots
 	mots = resultat.Summary
 	mots_originaux = mots
-	def enleverpoints(x): return x != u'...' # on enlève les occurences de "..." dans les mots
-	mots = filter(enleverpoints, mots.split(' '))
-	if (len(mots) < 6) :
-		raise Exception('Pas assez de mots!')
+	mots = y.filtrer_mots(mots)
 
 	# Les tags
-	tags = []
-	for i in range(flahoo.settings.FLAHOO_TOTAL_TAGS):
-		tag = mots[random.randrange(0, len(mots))]
-		mots.remove(tag)
-		tag = re.sub(':|;|,|\.|\s|\(|\)', '', tag)
-		tags.append(tag)
+	tags = f.get_tags_from_mots(mots)
 
 	# Interaction avec Flickr
 	f = Flickr()
 	output = []
 	for tag in tags:
-		(photos, sort_method) = f.get_photos_by_tag(tag.encode('utf-8'), 10)
-		newphotos = []
-	
-		for photo in photos:
-			p = {
-	 		'title' : photo('title'),
-	 		'image'   : f.get_photo_image(photo),
-	 		'url' : f.get_photo_url(photo)
-	 		}
-			newphotos.append(p)
-		tagr = re.sub('^(.+)(.{1})$', '\\1<strong>\\2</strong>', tag)
-		url = "/photos/%s" % tag.lower()
-		output.append({'photos':newphotos, 'tag': tag, 'sort': sort_method, 'tagr' : tagr, 'url' : url})
+		output.append(f.get_photos_by_tag(tag))
 
 	# Highlight des tags dans les mots
 	def highlight_tags(mot): 

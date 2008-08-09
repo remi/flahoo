@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flahoo.lib.FlickrClient import FlickrClient
-import random
+import random, re
     
 class Flickr():
 	sort_methods = ('date-posted-asc',
@@ -12,16 +12,52 @@ class Flickr():
 					'interestingness-asc',
 					'relevance')
 
+	def get_tags_from_mots(self, mots):
+		tags = []
+		for i in range(flahoo.settings.FLAHOO_TOTAL_TAGS):
+			tag = mots[random.randrange(0, len(mots))]
+			mots.remove(tag)
+			tag = self.filtrer_tag(tag)
+			tags.append(tag)		
+		return tags
+
+	def filtrer_tag(self, tag):
+		return re.sub(':|;|,|\.|\s|\(|\)', '', tag)
+
 	def get_photos_by_tag(self, tag, total=10):
+		"""Retourne un objet contenant des photos et des informations relatives à un tag"""
 		import flahoo.settings
 		client = FlickrClient(flahoo.settings.FLAHOO_FLICKR_API_KEY)
-
 		sort_method = random.choice(self.sort_methods)
-
 		photos = client.flickr_photos_search(tags=tag, per_page=total, sort=sort_method)
-		return (photos, sort_method);
+
+		newphotos = []
+
+		for photo in photos:
+			p = {
+	 		'title' : photo('title'),
+	 		'image'   : self.get_photo_image(photo),
+	 		'url' : self.get_photo_url(photo)
+	 		}
+			newphotos.append(p)
+
+		tagr = self.make_tagr(tag)
+		url = "/photos/%s" % tag.lower()
+		obj = {
+			'photos':newphotos,
+			'tag': tag,
+			'sort': sort_method,
+			'tagr' : tagr,
+			'url' : url
+			}
+		
+		return obj
+	
+	def make_tagr(self, tag):
+		return re.sub('^(.+)(.{1})$', '\\1<strong>\\2</strong>', tag)
 	
 	def get_photo_image(self, photo, size='small_square'):
+		"""Retourne l'URL d'une photo selon un objet d'une photo et d'un format"""
 		
 		base_url = "http://static.flickr.com"
 		size_char='s'  # default to small_square
@@ -50,8 +86,14 @@ class Yahoo():
 	from yahoo.search.web import *
 	
 	def search(self, query, total):
+		"""Retourne des résultats de rechercher basés sur des mots-clés et un total"""
+		
 		y = self.WebSearch("YahooDemo")
 		y.query = query
 		y.results = total
 		return y.parse_results().results
 	
+	def filtrer_mots(self, mots):
+		def enleverpoints(x): return x != u'...' # on enlève les occurences de "..." dans les mots
+		mots = filter(enleverpoints, mots.split(' '))
+		return mots
