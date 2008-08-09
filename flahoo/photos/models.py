@@ -2,6 +2,7 @@
 
 from flahoo.lib.FlickrClient import FlickrClient
 import random, re
+import flahoo.settings
     
 class Flickr():
 	sort_methods = ('date-posted-asc',

@@ -25,10 +25,10 @@ def photos(request, search_tag):
 	mots = y.filtrer_mots(mots)
 
 	# Les tags
+	f = Flickr()
 	tags = f.get_tags_from_mots(mots)
 
 	# Interaction avec Flickr
-	f = Flickr()
 	output = []
 	for tag in tags:
 		output.append(f.get_photos_by_tag(tag))
