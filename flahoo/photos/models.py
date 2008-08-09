@@ -3,7 +3,11 @@
 from flahoo.lib.FlickrClient import FlickrClient
 import random, re
 import flahoo.settings
-    
+
+class FlickrError(Exception): pass
+class BadTagsError(FlickrError): pass
+class WordsError(FlickrError): pass
+
 class Flickr():
 	sort_methods = ('date-posted-asc',
 					'date-posted-desc',
@@ -16,14 +20,19 @@ class Flickr():
 	def get_tags_from_mots(self, mots):
 		tags = []
 		for i in range(flahoo.settings.FLAHOO_TOTAL_TAGS):
+			if len(mots) == 0:
+				raise BadTagsError
 			tag = mots[random.randrange(0, len(mots))]
 			mots.remove(tag)
+			tag_original = tag
 			tag = self.filtrer_tag(tag)
-			tags.append(tag)		
+			if tag == u'':
+				raise BadTagsError
+			tags.append(tag.lower())
 		return tags
 
 	def filtrer_tag(self, tag):
-		return re.sub(':|;|,|\.|\s|\(|\)', '', tag)
+		return re.sub(':|;|,|\.|\s|\(|\)|!', '', tag.lower())
 
 	def get_photos_by_tag(self, tag, total=10):
 		"""Retourne un objet contenant des photos et des informations relatives à un tag"""
@@ -96,5 +105,21 @@ class Yahoo():
 	
 	def filtrer_mots(self, mots):
 		def enleverpoints(x): return x != u'...' # on enlève les occurences de "..." dans les mots
-		mots = filter(enleverpoints, mots.split(' '))
+		def tolower(x): return x.lower()
+		mots = mots.split(" ")
+		mots = filter(enleverpoints, mots)
+		mots = map(tolower, mots)
 		return mots
+	
+	def highliter_mots(self, mots, tags):
+		f = Flickr()
+		def highlight_tags(mot): 
+			mot = f.filtrer_tag(mot.lower())
+			if (tags.count(mot)) :
+				return '<strong>%s</strong>' % mot
+			else :
+				return mot
+		mots = mots.split(' ')
+		mots = map(highlight_tags, mots)
+		return " ".join(mots)
+		

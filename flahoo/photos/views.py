@@ -34,15 +34,7 @@ def photos(request, search_tag):
 		output.append(f.get_photos_by_tag(tag))
 
 	# Highlight des tags dans les mots
-	def highlight_tags(mot): 
-		mot = mot.lower()
-		if (tags.count(mot)) :
-			return '<strong>%s</strong>' % mot
-		else :
-			return mot
-	mots_originaux = mots_originaux.split(' ')
-	mots_originaux = map(highlight_tags, mots_originaux)
-	mots_originaux = " ".join(mots_originaux)
+	mots_originaux = y.highliter_mots(mots_originaux, tags)
 
 	# Rendering de la template
 	t = loader.get_template('photos.html')
