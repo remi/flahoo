@@ -8,7 +8,7 @@ class FlickrError(Exception): pass
 class BadTagsError(FlickrError): pass
 class WordsError(FlickrError): pass
 
-class Flickr():
+class Flickr:
 	sort_methods = ('date-posted-asc',
 					'date-posted-desc',
 					'date-taken-asc',
@@ -91,7 +91,7 @@ class Flickr():
 		base_url = "http://flickr.com"
 		return "%s/photos/%s/%s/" % (base_url, photo('owner'), photo('id'))
 
-class Yahoo():
+class Yahoo:
 	
 	from yahoo.search.web import *
 	

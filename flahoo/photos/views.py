@@ -2,7 +2,7 @@
 
 from django.template import Context, loader
 from django.http import HttpResponse
-from flahoo.photos.models import *
+from flahoo.photos.models import * 
 import re
 import random
 import flahoo.settings
