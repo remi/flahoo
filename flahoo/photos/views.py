@@ -17,8 +17,12 @@ def photos(request, search_tag):
 	# Interaction avec Yahoo!
 	y = Yahoo()
 	resultats = y.search(search_tag, 30)
+	
+	if len(resultats) == 0 :
+		return photos_vide(request, search_tag)
+	
 	resultat = random.choice(resultats)
-
+	
 	# Les mots
 	mots = resultat.Summary
 	mots_originaux = mots
@@ -45,4 +49,11 @@ def photos(request, search_tag):
     	'input_value' : search_tag
 	})
 	
+	return HttpResponse(t.render(c))
+
+def photos_vide(request, search_tag):
+	t = loader.get_template('photos_vide.html')
+	c = Context({
+    	'input_value' : search_tag
+	})
 	return HttpResponse(t.render(c))

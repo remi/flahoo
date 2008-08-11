@@ -174,3 +174,16 @@ form p {
 	display: block;
 	text-align: right;
 }
+
+.erreur {
+	margin-top: 2em;
+	background: #FFDFDF;
+	padding: 10px;
+	color: #a00;
+	font-weight: bold;
+	border: 1px solid #DF8B8B;
+}
+
+.erreur p {
+	margin: 0;
+}
