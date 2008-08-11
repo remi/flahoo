@@ -1,0 +1,5 @@
+Choses à faire pour Flahoo
+-----------------------------------------------------------------------------
+[ ] Complètement ré-écrire le code de l'application de façon à ce qu'il
+    soit mieux structuré. Prévoir des "test cases" d'abord.
+[ ] Utiliser un système de cache
