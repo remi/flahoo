@@ -207,3 +207,8 @@ a.flickr span {
 	list-style: decimal;
 	margin-bottom: 0.2em;
 }
+
+.processus ol li strong {
+	color: #333;
+}
+
