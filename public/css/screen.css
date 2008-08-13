@@ -80,20 +80,20 @@ form p {
 	color: #FF0182;
 }
 
-#entete p a.yahoo {
+a.yahoo {
 	color: #f00;
 	font-weight: bold;
 	font-variant: small-caps;
 	font-family: Tahoma, Verdana, sans-serif;
 }
 
-#entete p a.flickr {
+a.flickr {
 	color: #0C5FC5;
 	font-weight: bold;
 	font-family: Verdana, sans-serif;
 }
 
-#entete p a.flickr span {
+a.flickr span {
 	color: #FF0182;
 }
 
@@ -186,4 +186,24 @@ form p {
 
 .erreur p {
 	margin: 0;
+}
+
+.processus {
+	border-top: 1px solid #ccc;
+	padding-top: 0.6em;
+	margin-top: 2.6em;
+}
+
+.processus h2 {
+	font-size: 130%;
+	margin-bottom: 0.4em;
+}
+
+.processus ol {
+	margin-left: 20px;
+}
+
+.processus ol li {
+	list-style: decimal;
+	margin-bottom: 0.2em;
 }
