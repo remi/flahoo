@@ -24,8 +24,7 @@ def photos(request, search_tag):
 	resultat = random.choice(resultats)
 	
 	# Les mots
-	mots = resultat.Summary
-	mots = mots.encode('utf-8')
+	mots = resultat.Summary.encode('utf-8')
 	mots_originaux = mots
 	mots = y.filtrer_mots(mots)
 
