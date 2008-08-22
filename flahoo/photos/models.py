@@ -104,12 +104,21 @@ class Yahoo:
 		return y.parse_results().results
 	
 	def filtrer_mots(self, mots):
+
+		# mots problématiques
+		# ---------------------------
+		# ['123.11.', 'Supplies', 'on', 'international', 'trains.', '\xc2\xa7123.12.', 'Entry', 'of', 'foreign', 'locomotives', 'and', 'equipment', 'in', 'international', 'traffic.', '\xc2\xa7123.13', '...']
+	
+		# mots = u'123.11. Supplies on international trains. \xa7123.12. Entry of foreign locomotives and equipment in international traffic. \xa7123.13 ...'
+		# mots = mots.encode('utf-8')
+
 		def enleverpoints(x): return x != u'...' # on enlève les occurences de "..." dans les mots
 		def tolower(x): return x.lower()
-		mots = mots.encode('utf-8')
+		
 		mots = mots.split(" ")
 		mots = filter(enleverpoints, mots)
 		mots = map(tolower, mots)
+
 		return mots
 	
 	def highliter_mots(self, mots, tags):
