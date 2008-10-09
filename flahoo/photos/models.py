@@ -3,6 +3,7 @@
 from flahoo.lib.FlickrClient import FlickrClient
 import random, re
 import flahoo.settings
+from yahoo.search.web import *
 
 class FlickrError(Exception): pass
 class BadTagsError(FlickrError): pass
@@ -93,12 +94,10 @@ class Flickr:
 
 class Yahoo:
 	
-	from yahoo.search.web import *
-	
 	def search(self, query, total):
 		"""Retourne des résultats de rechercher basés sur des mots-clés et un total"""
 		
-		y = self.WebSearch("YahooDemo")
+		y = WebSearch("YahooDemo")
 		y.query = query
 		y.results = total
 		return y.parse_results().results
