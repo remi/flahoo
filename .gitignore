@@ -1,0 +1,3 @@
+*.pyc
+flahoo/urls.py
+flahoo/settings.py
